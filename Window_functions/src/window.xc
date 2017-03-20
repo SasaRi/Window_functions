@@ -26,11 +26,9 @@ int32_t blackman(unsigned n, unsigned window_size, unsigned Q_form)
 {
     int32_t x = dsp_math_divide(n,window_size-2, 24);
 
-    int32_t pi2 = dsp_math_multiply(PI2_Q8_24, x, 24);
+    int32_t y1 = dsp_math_multiply(PI2_Q8_24, x, 24);
 
-    int32_t y1 = dsp_math_multiply(pi2, x, 24);
-
-    int32_t y2 = dsp_math_multiply(2*pi2, x, 24);
+    int32_t y2 = dsp_math_multiply(2*PI2_Q8_24, x, 24);
 
     int32_t a1 = dsp_math_cos(y1);
 
