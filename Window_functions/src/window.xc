@@ -24,19 +24,32 @@ int32_t hann(unsigned n, unsigned window_size, unsigned Q_form)
 
 int32_t blackman(unsigned n, unsigned window_size, unsigned Q_form)
 {
+    int32_t y[2], a[2];
+
     int32_t x = dsp_math_divide(n,window_size-2, 24);
 
-    int32_t y1 = dsp_math_multiply(PI2_Q8_24, x, 24);
+    for (int i = 0; i < 2; ++i)
+    {
+        y[i] = dsp_math_multiply((i+1)*PI2_Q8_24, x, 24);
+        a[i] = dsp_math_cos(y[i]);
+        y[i] = a[i] >> (24-Q_form);
+    }
 
-    int32_t y2 = dsp_math_multiply(2*PI2_Q8_24, x, 24);
+    return (0.42*(1<<Q_form) - dsp_math_multiply(0.5*(1<<Q_form), y[0], Q_form) + dsp_math_multiply(0.08*(1<<Q_form), y[1], Q_form));
+}
 
-    int32_t a1 = dsp_math_cos(y1);
+int32_t flat_top(unsigned n, unsigned window_size, unsigned Q_form)
+{
+    int32_t y[2], a[2];
 
-    int32_t a2 = dsp_math_cos(y2);
+    int32_t x = dsp_math_divide(n,window_size-2, 24);
 
-    y1 = a1 >> (24-Q_form);
+    for (int i = 0; i < 2; ++i)
+    {
+        y[i]= dsp_math_multiply((i+1)*PI2_Q8_24, x, 24);
+        a[i] = dsp_math_cos(y[i]);
+        y[i] = a[i] >> (24-Q_form);
+    }
 
-    y2 = a2 >> (24-Q_form);
-
-    return (0.42*(1<<Q_form) - dsp_math_multiply(0.5*(1<<Q_form), y1, Q_form) + dsp_math_multiply(0.08*(1<<Q_form), y2, Q_form));
+    return (0.2810639*(1<<Q_form) - dsp_math_multiply(0.5208972*(1<<Q_form), y[0], Q_form) + dsp_math_multiply(0.1980399*(1<<Q_form), y[1], Q_form));
 }

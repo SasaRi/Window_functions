@@ -19,4 +19,8 @@ int32_t hann(unsigned n, unsigned window_size, unsigned Q_form);
  */
 int32_t blackman(unsigned n, unsigned window_size, unsigned Q_form);
 
+/*
+ * w = .2810639 - .5208972*cos(2*pi*n/(M-1)) + .1980399*cos(4*pi*n/(M-1))
+ */
+int32_t flat_top(unsigned n, unsigned window_size, unsigned Q_form);
 #endif /* WINDOW_H_ */

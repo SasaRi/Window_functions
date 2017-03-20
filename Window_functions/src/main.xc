@@ -13,7 +13,8 @@
 #define Q_form 16
 #define num_samples 256
 #define DO_HANN 0
-#define DO_BLACK 1
+#define DO_BLACK 0
+#define FLAT_TOP 1
 
 int main()
 {
@@ -34,6 +35,16 @@ int main()
     for (int i = 0; i< num_samples; ++i)
     {
         printf("%d\n", blackman(i, num_samples, Q_form));
+    }
+#endif
+
+#if FLAT_TOP
+    /*
+     * flat-top window
+     */
+    for (int i = 0; i< num_samples; ++i)
+    {
+        printf("%d\n", flat_top(i, num_samples, Q_form));
     }
 #endif
 
