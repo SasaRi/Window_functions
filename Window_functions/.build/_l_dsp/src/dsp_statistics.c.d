@@ -1,0 +1,5 @@
+.build/_l_dsp/src/dsp_statistics.c.d .build/_l_dsp/src/dsp_statistics.c.o .build/_l_dsp/src/dsp_statistics.c.pca.xml: \
+  ../../Window_functions/lib_dsp/src/dsp_statistics.c \
+  ../../Window_functions/lib_dsp/api/dsp_qformat.h \
+  ../../Window_functions/lib_dsp/api/dsp_math.h \
+  ../../Window_functions/lib_dsp/api/dsp_statistics.h
