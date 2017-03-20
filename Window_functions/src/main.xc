@@ -12,7 +12,8 @@
 
 #define Q_form 16
 #define num_samples 256
-#define DO_HANN 1
+#define DO_HANN 0
+#define DO_BLACK 1
 
 int main()
 {
@@ -23,6 +24,16 @@ int main()
     for (int i = 0; i< num_samples; ++i)
     {
         printf("%d\n", hann(i, num_samples, Q_form));
+    }
+#endif
+
+#if DO_BLACK
+    /*
+     * Blackman window
+     */
+    for (int i = 0; i< num_samples; ++i)
+    {
+        printf("%d\n", blackman(i, num_samples, Q_form));
     }
 #endif
 
